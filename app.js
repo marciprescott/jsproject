@@ -26,6 +26,20 @@ function toggleEmailField() {
     emailField.style.display = "none"; // Hide email field
   }
 }
+function displayUsers(data) {
+  const container = document.getElementById("user-container");
+  container.innerHTML = ""; // Clear previous content
+  data.forEach((user) => {
+    const userDiv = document.createElement("div");
+    userDiv.innerHTML = `
+      <h3>${user.name}</h3>
+      <p>Email: ${user.email}</p>
+      <p>Company: ${user.company.name}</p>
+      <hr>
+    `;
+    container.appendChild(userDiv);
+  });
+}
 async function getData() {
   const url = "https://jsonplaceholder.typicode.com/users/"; // Example URL
   try {
@@ -34,9 +48,11 @@ async function getData() {
       throw new Error(`Response status: ${response.status}`);
     }
 
-    const json = await response.json();
-    console.log(json);
+    const data = await response.json();
+    console.log(data);
+    displayUsers(data);
   } catch (error) {
     console.error(error.message);
   }
 }
+getData(); // Call the function to fetch data
