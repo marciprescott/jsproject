@@ -35,6 +35,9 @@ function displayUsers(data) {
       <h3>${user.name}</h3>
       <p>Email: ${user.email}</p>
       <p>Company: ${user.company.name}</p>
+      <p>Username: ${user.username}</p>
+      <p>Phone: ${user.phone}</p>
+      <p>Website: ${user.website}</p>
       <hr>
     `;
     container.appendChild(userDiv);
